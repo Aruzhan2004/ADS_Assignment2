@@ -1,4 +1,4 @@
-public abstract class MyLinkedList<T> implements MyList<T> {
+public class MyLinkedList<T> implements MyList<T> {
     private class Node {
         T element;
         Node prev;
@@ -24,7 +24,10 @@ public abstract class MyLinkedList<T> implements MyList<T> {
     public int size() {
         return size;
     }
-
+    @Override
+    public boolean contains(Object o) {
+        return indexOf(o) >= 0;
+    }
     @Override
     public void add(T item) {
         add(item, size);
@@ -118,11 +121,41 @@ public abstract class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
+    public void clear() {
+        head = null;
+        tail = null;
+        size = 0;
+    }
+    @Override
     public T get(int index) {
         return getNode(index).element;
     }
-
-
+    @Override
+    public int indexOf(Object o) {
+        int index = 0;
+        Node curr = head;
+        while (curr != null) {
+            if (o == null ? curr.element == null : o.equals(curr.element)) {
+                return index;
+            }
+            curr = curr.next;
+            index++;
+        }
+        return -1;
+    }
+    @Override
+    public int lastIndexOf(Object o) {
+        int index = size - 1;
+        Node curr = tail;
+        while (curr != null) {
+            if (o == null ? curr.element == null : o.equals(curr.element)) {
+                return index;
+            }
+            curr = curr.prev;
+            index--;
+        }
+        return -1;
+    }
 
     private Node getNode(int index) {
         if (index < 0 || index >= size) {
@@ -142,7 +175,5 @@ public abstract class MyLinkedList<T> implements MyList<T> {
             return curr;
         }
     }
-
-
 
 }
