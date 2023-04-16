@@ -1,4 +1,4 @@
-public abstract class MyArrayList<T> implements MyList<T> {
+abstract public class MyArrayList<T> implements MyList<T> {
     private Object[] elements;
     private int size;
 
@@ -18,7 +18,15 @@ public abstract class MyArrayList<T> implements MyList<T> {
         return size;
     }
 
-
+    @Override
+    public boolean contains(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (elements[i].equals(o)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     @Override
     public void add(T item) {
@@ -64,6 +72,11 @@ public abstract class MyArrayList<T> implements MyList<T> {
         return removedElement;
     }
 
+    @Override
+    public void clear() {
+        elements = new Object[10];
+        size = 0;
+    }
 
     @Override
     public T get(int index) {
@@ -71,6 +84,26 @@ public abstract class MyArrayList<T> implements MyList<T> {
             throw new IndexOutOfBoundsException();
         }
         return (T) elements[index];
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (elements[i].equals(o)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (elements[i].equals(o)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 }
