@@ -1,4 +1,4 @@
-abstract public class MyArrayList<T> implements MyList<T> {
+public class MyArrayList<T> implements MyList<T> {
     private Object[] elements;
     private int size;
 
@@ -104,6 +104,18 @@ abstract public class MyArrayList<T> implements MyList<T> {
             }
         }
         return -1;
+    }
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[");
+        for (int i = 0; i < size; i++) {
+            sb.append(elements[i]);
+            if (i < size - 1) {
+                sb.append(", ");
+            }
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
 }

@@ -175,5 +175,17 @@ public class MyLinkedList<T> implements MyList<T> {
             return curr;
         }
     }
-
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        Node node = head;
+        while (node != null) {
+            sb.append(node.element.toString());
+            if (node.next != null) {
+                sb.append(", ");
+            }
+            node = node.next;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }
